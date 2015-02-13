@@ -4,8 +4,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "ubuntu/trusty64"
-    config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
+    config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
     config.vm.network "private_network", ip: "33.33.33.100"
     config.vm.synced_folder ".", "/vagrant",
     	:nfs => (RUBY_PLATFORM =~ /linux/ or RUBY_PLATFORM =~ /darwin/)

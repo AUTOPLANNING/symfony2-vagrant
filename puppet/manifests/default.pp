@@ -6,6 +6,11 @@ class system-update {
     exec { 'apt-get update':
         command => 'apt-get update',
     }
+
+    exec { 'apt-get install software-properties-common':
+        command => 'apt-get -y  --fix-missing install software-properties-common',
+        require => Exec['apt-get update'],
+    }
 }
 
 class dev-packages {
@@ -13,7 +18,7 @@ class dev-packages {
     include gcc
     include wget
 
-    $devPackages = [ "vim", "curl", "git", "nodejs", "npm", "capistrano", "rubygems", "openjdk-7-jdk", "libaugeas-ruby" ]
+    $devPackages = [ "vim", "curl", "git", "nodejs", "npm", "capistrano", "ruby", "rubygems-integration", "openjdk-7-jdk", "libaugeas-ruby" ]
     package { $devPackages:
         ensure => "installed",
         require => Exec['apt-get update'],
@@ -26,12 +31,12 @@ class dev-packages {
 
     exec { 'install capifony using RubyGems':
         command => 'gem install capifony',
-        require => Package["rubygems"],
+        require => Package["ruby"],
     }
 
     exec { 'install sass with compass using RubyGems':
         command => 'gem install compass',
-        require => Package["rubygems"],
+        require => Package["ruby"],
     }
 
     exec { 'install capistrano_rsync_with_remote_cache using RubyGems':
