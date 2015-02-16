@@ -18,7 +18,7 @@ class dev-packages {
     include gcc
     include wget
 
-    $devPackages = [ "vim", "curl", "git", "nodejs", "npm", "capistrano", "ruby", "rubygems-integration", "openjdk-7-jdk", "libaugeas-ruby" ]
+    $devPackages = [ "vim", "curl", "git", "nodejs", "npm", "capistrano", "ruby-dev", "openjdk-7-jdk", "libaugeas-ruby" ]
     package { $devPackages:
         ensure => "installed",
         require => Exec['apt-get update'],
@@ -31,12 +31,12 @@ class dev-packages {
 
     exec { 'install capifony using RubyGems':
         command => 'gem install capifony',
-        require => Package["ruby"],
+        require => Package["ruby-dev"],
     }
 
     exec { 'install sass with compass using RubyGems':
         command => 'gem install compass',
-        require => Package["ruby"],
+        require => Package["ruby-dev"],
     }
 
     exec { 'install capistrano_rsync_with_remote_cache using RubyGems':
@@ -189,9 +189,13 @@ class php-setup {
 
 class composer {
     exec { 'install composer php dependency management':
-        command => 'curl -s http://getcomposer.org/installer | php -- --install-dir=/usr/bin && mv /usr/bin/composer.phar /usr/bin/composer',
+        command => 'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin && mv /usr/bin/composer.phar /usr/bin/composer',
         creates => '/usr/bin/composer',
         require => [Package['php5-cli'], Package['curl']],
+    }
+
+    exec { 'set home env':
+        command => 'export COMPOSER_HOME=${app_dir}'
     }
 
     exec { 'composer self update':
@@ -217,6 +221,6 @@ include dev-packages
 include nginx-setup
 include php-setup
 include composer
-include phpqatools
 include memcached
 include redis
+include pear
