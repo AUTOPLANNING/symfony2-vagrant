@@ -2,16 +2,16 @@
 
 
 ## Installation
-####This setup is based and tested with Ubuntu Precise 64 bit base box, with Vagrant 1.0.5 version (should be working with 1.1)
+####This setup is based and tested with Ubuntu Trusty 64 bit base box, with Vagrant 1.0.5 version (should be working with 1.1)
 
-* Install Vagrant using using the [installation instructions](http://docs.vagrantup.com/v2/installation/index.html)
+* Install Vagrant using the [installation instructions](http://docs.vagrantup.com/v2/installation/index.html)
 
 * If you are on Windows OS install NFS support plugin [more information and detailed installation instructions](https://github.com/GM-Alex/vagrant-winnfsd):
     ```vagrant plugin install vagrant-winnfsd```
 
 * Clone this repository
 
-    ```$ git clone https://github.com/irmantas/symfony2-vagrant.git```
+    ```$ git clone https://github.com/TheOneOff/symfony2-vagrant.git```
     
 * install git submodules
     ```$ git submodule update --init```
@@ -61,6 +61,7 @@
 * [kertz](https://github.com/kertz) - for great ideas
 * [Markus Fischer](https://github.com/mfn) - for contribution
 * [Gustavo Schirmer](https://github.com/hurrycaner) - for contribution
+* [irmantas](https://github.com/irmantas) - for original code
 
 ## Hints
 ####Startup speed
@@ -87,4 +88,4 @@ To speed up the startup process use ```$ vagrant up --no-provision``` (thanks to
 * Edit ```web/app_dev.php``` to allow host
 
 ## TODO
-You tell me
+You tell us
