@@ -14,4 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         puppet.module_path = "puppet/modules"
         puppet.options = ['--verbose']
     end
+
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 4096
+    end
 end
