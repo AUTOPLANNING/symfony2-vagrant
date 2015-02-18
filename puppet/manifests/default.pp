@@ -196,7 +196,7 @@ class composer {
 
     exec { 'composer self update':
         command => 'composer self-update',
-        require => [Package['php5-cli'], File['/etc/php5/fpm/php-fpm.conf'], Package['curl'], Exec['install composer php dependency management']],
+        require => [Package['php5-cli'], Service['php5-fpm'], Package['curl'], Exec['install composer php dependency management']],
     }
 }
 
