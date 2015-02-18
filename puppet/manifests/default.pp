@@ -194,13 +194,9 @@ class composer {
         require => [Package['php5-cli'], Package['curl']],
     }
 
-    exec { 'set home env':
-        command => 'export COMPOSER_HOME=${app_dir}'
-    }
-
     exec { 'composer self update':
         command => 'composer self-update',
-        require => [Package['php5-cli'], Package['curl'], Exec['install composer php dependency management']],
+        require => [Package['php5-cli'], File['/etc/php5/fpm/php-fpm.conf'], Package['curl'], Exec['install composer php dependency management']],
     }
 }
 
